@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title id="SHOPPING_LIST">SHOPPING LIST</title>
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<div id="class-container">
+			<h1>TO BUY</h1>
+			<h2>SHOPPING LIST</h2>
+			<ol id="list">
+				<% for (var i=0; i<shopping.length; i++) { %>
+					<% if (shopping[i].purchased == 1) { %>
+						<div class="checked">
+					<% } else { %>
+						<div class="unchecked">
+					<% } %>
+						<li><%= shopping[i].name%> <strong>x<%= shopping[i].quantity%></strong>
+						</div>
+							<div class="button-container">
+								<form action="/delItem" method="post">
+									<button class="link" type="submit" name="del" id="del" value="<%= shopping[i].id_item%>">Delete</button>
+								</form>
+								<form action="/checkItem" method="post">
+									<button class="link" type="submit" name="check" id="check" value="<%= shopping[i].id_item%>">Check</button>
+								</form>
+							</div>
+						</li> 	
+				<% } %>
+			</ol>
+			<h2>ADD ITEM</h2>
+			<form action="/addItem" method="post">
+				<label for="item">ITEM :</label>
+				<input type="text" id="item" name="item" required>
+				<label for="quantity">QUANTITY :</label>
+				<input type="number" id="quantity" name="quantity" required>
+				<button type="submit" id="add">ADD</button>
+			</form>		
+		</div>
+	</body>
+</html>
